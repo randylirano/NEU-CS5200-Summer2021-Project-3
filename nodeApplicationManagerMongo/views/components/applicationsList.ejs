@@ -1,0 +1,27 @@
+<br/>
+<div class="row g-3">
+  <% for (let application of applications) { %>
+
+    <div class="col-4">
+      <div class="card p-1">
+        <h5 class="card-title">Application No. <%= application.application_id %></h5>
+        <div class="card-text">
+
+          <% for (let applicant of application.applicant) { %>
+            <div>Applicant: <%= applicant.first_name %> <%= applicant.last_name %></div>
+          <% } %>
+          
+          <div>
+            <a class="btn btn-outline-primary" href="<%= '/applications/' + application._id + '/edit' %>">Edit</a>
+            <a class="btn btn-outline-danger" href="<%= '/applications/' + application._id + '/delete' %>">Delete</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  <% } %>
+
+ <%- include("./applicationsPagination.ejs", { currentPage, lastPage }) %>
+
+</div>

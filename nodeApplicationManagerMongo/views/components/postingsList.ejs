@@ -1,0 +1,26 @@
+<br/>
+<div class="row g-3">
+  <% for (let post of postings) { %>
+
+    <div class="col-4">
+      <div class="card p-1">
+        <h5 class="card-title"><%= post.position %></h5>
+        <div class="card-text">
+          <div>Posting Date: <%= post.posting_date.toDateString() %></div>
+          <div>Language: <%= post.language %></div>
+          <div>Cloud Platform: <%= post.cloud_platform %></div>
+          <div>Operating System: <%= post.operating_system %></div>
+          <div>
+            <a class="btn btn-outline-primary" href="<%= '/postings/' + post._id + '/edit' %>">Edit</a>
+            <a class="btn btn-outline-danger" href="<%= '/postings/' + post._id + '/delete' %>">Delete</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  <% } %>
+
+ <%- include("./postingsPagination.ejs", { currentPage, lastPage }) %>
+
+</div>

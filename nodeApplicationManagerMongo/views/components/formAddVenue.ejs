@@ -1,0 +1,40 @@
+<h3>Add Venue</h3>
+<form
+  action="<%= '/references/' + ref.reference_id + '/addVenue'  %>"
+  method="POST"
+>
+  <div>
+    <input
+      hidden
+      type="text"
+      class="form-control"
+      name="reference_id"
+      value="<%= ref.reference_id %>"
+    />
+  </div>
+
+  <div>
+    <label class="form-label">
+      Venue Name:
+      <input type="text" class="form-control" name="name" />
+    </label>
+  </div>
+
+  <div>
+    <label class="form-label">
+      Venue Type:
+
+      <select  class="form-control" name="type">
+        <option value="conference">Conference</option>
+        <option value="journal">Journal</option>
+        <option value="workshop">Workshop</option>
+        <option value="book">Book</option>
+        <option value="position">Position</option>
+      </select>
+
+    </label>
+  </div>
+
+
+  <button type="submit" class="btn btn-outline-primary">Add Venue</button>
+</form>

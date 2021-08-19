@@ -1,0 +1,52 @@
+The following file provide some JSON examples showing the database hierarchy. 
+
+// Posting
+{
+  "posting_id": 1,
+  "position": "Software Engineer III",
+  "posting_date": {"$date":"2020-12-22T12:48:52.000Z"},
+  "job_description": "Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.",
+  "language": "Java",
+  "cloud_platform": "AWS",
+  "operating_system": "Windows",
+  "annual_salary": 129015.59
+}
+
+// Application
+{
+  "application_id": 1,
+  "posting_id": 164,
+  "submission_date": {"$date":"2021-02-06T12:29:32.000Z"},
+  "applicant": [
+    {
+      "applicant_id": 2446,
+      "first_name": "Charlean",
+      "last_name": "Shortall",
+      "email": "cshortall0@census.gov",
+      "phone_number": "(830) 9782115"
+    }
+  ],
+  "applicant_language": "C/C++",
+  "applicant_cloud_platform": "AWS",
+  "applicant_os": "MacOS",
+  "hired": true
+}
+
+{
+  "application_id": 2,
+  "posting_id": 209,
+  "submission_date": {"$date":"2020-12-17T23:35:41.000Z"},
+  "applicant": [
+    {
+      "applicant_id": 2886,
+      "first_name": "Maegan",
+      "last_name": "Norkutt",
+      "email": "mnorkutt0@behance.net",
+      "phone_number": "(453) 6839422"
+    }
+  ],
+  "applicant_language": "C/C++",
+  "applicant_cloud_platform": "AWS",
+  "applicant_os": "Windows",
+  "hired": false
+}

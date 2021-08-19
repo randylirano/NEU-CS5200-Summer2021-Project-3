@@ -1,0 +1,74 @@
+<h2>Reference</h2>
+
+<form
+  action=" <%= '/references/' + ref._id + '/edit' %>"
+  method="POST"
+>
+
+  <div>
+    <label class="form-label">
+      Reference ID:
+      <input
+        class="form-control"
+        type="text"
+        name="_id"
+        disabled
+        value="<%= ref._id %>"
+        disabled
+      />
+    </label>
+  </div>
+  <div>
+    <label class="form-label">
+      Title:
+      <input
+        class="form-control"
+        type="text"
+        name="title"
+        value="<%= ref.title %>"
+      />
+    </label>
+  </div>
+
+  <div>
+    <label class="form-label">
+      Published On:
+      <input
+        class="form-control"
+        type="text"
+        name="published_on"
+        value="<%= ref.published_on %>"
+      />
+    </label>
+  </div>
+
+  <div>
+    <label class="form-label">
+      Tags:
+      <input
+        class="form-control"
+        type="text"
+        name="tags"
+        value="<%= ref.tags %>"
+      />
+    </label>
+  </div>
+
+  <div>
+    <label class="form-label">
+      Authors:
+      <input
+        class="form-control"
+        type="text"
+        name="authors"
+        value="<%= ref.authors %>"
+      />
+    </label>
+  </div>
+  <button type="submit" class="btn btn-primary">Edit</button>
+  <a
+    class="btn btn-danger"
+    href="<%= '/references/' + ref._id + '/delete' %>"
+    >Delete</a
+  >
+</form>

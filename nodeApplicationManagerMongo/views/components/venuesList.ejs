@@ -1,0 +1,16 @@
+<% if (ref.venues) {%>
+    <h2>Venues:</h2>
+    <ul>
+      <% for (let v of ref.venues) { %>
+      <li>
+        <label><strong>Name:</strong> <span> <%= v.name %></span></label>
+        <label><strong>Type:</strong> <span> <%= v.type %></span></label>
+        <a
+          href="<%= '/references/' + ref.reference_id + '/removeVenue/' + v.author_id   %>"
+          >❌</a
+        >
+      </li>
+      <% } %>
+    </ul>
+    <% } %> <%- include("../components/formAddVenue.ejs", { ref }) %>
+    
