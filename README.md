@@ -1,5 +1,5 @@
-# NEU-CS5200-Summer2021-Project-2
-This project handles the same business requirements as project 1. The only difference is that MongoDB will be used as NoSQL database.
+# NEU-CS5200-Summer2021-Project-3
+This project handles the same business requirements as project 2. As an addition to the mongol database implemented in project 2, an in-memory database (in this case Redis) will be used to implemenent additional features.
 
 # Files and Directories
 
@@ -26,10 +26,12 @@ npm install
 
 3) Start mongo server
 
-4) Start the server
+4) Start the Redis server
+
+5) Start the server
 
 ```
 npm start
 ```
 
-5) Point your browser to http://locahost:3000
+6) Point your browser to http://locahost:3000
