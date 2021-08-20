@@ -1,9 +1,9 @@
 const { MongoClient, ObjectId } = require("mongodb");
+const redis = require("redis");
+const { promisify } = require("util");
 
 // global variables
 const uri = process.env.MONGO_URL || "mongodb://localhost:27017";
-// const DB_NAME = "ReferenceManager";
-// const COL_NAME = "Reference";
 
 const DB_NAME = "ApplicationManager";
 const POSTING_COL = "Posting";
@@ -108,6 +108,41 @@ async function getApplicationsCount(query) {
     client.close();
   }
 
+}
+
+
+async function getPostingLeaderboard() {
+  console.log("Retrieving Leaderboard");
+
+  const clientMongo = new MongoClient(uri);
+  const clientRedis = redis.createClient();
+
+  clientRedis.p_zincrby = promisify(clientRedis.ZINCRBY).bind(clientRedis);
+  clientRedis.p_zrevrange = promisify(clientRedis.ZREVRANGE).bind(clientRedis);
+  clientRedis.p_zrevrangebyscore = promisify(clientRedis.ZREVRANGEBYSCORE).bind(clientRedis);
+
+  clientRedis.on("error Redis", (err) => console.log(err));
+
+  try {
+    await clientMongo.connect();
+
+    const applicationCollection = clientMongo.db(DB_NAME).collection(APPLICATION_COL);
+
+    const cursor = await applicationCollection.find({});
+
+    for await (let application of cursor) {
+      clientRedis.p_zincrby("postingLeaderboard", 1, posting_id);
+    }
+
+    return clientRedis.p_zrevrange("postingLeaderboard", 0, 5);
+
+
+  } catch (err) {
+    console.log("Mongo Error", err);
+  } finally {
+    clientMongo.close();
+    clientRedis.quit();
+  }
 }
 
 
@@ -260,13 +295,16 @@ async function addVenueToReferenceID(reference_id, venue) {
   } finally {
     client.close();
   }
-
 }
+
+
+
 
 module.exports.getPostings = getPostings;
 module.exports.getApplications = getApplications;
 module.exports.getPostingsCount = getPostingsCount;
 module.exports.getApplicationsCount = getApplicationsCount;
+module.exports.getPostingLeaderboard = getPostingLeaderboard;
 
 module.exports.insertReference = insertReference;
 module.exports.getReferenceByID = getReferenceByID;
