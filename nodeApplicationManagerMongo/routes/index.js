@@ -18,12 +18,14 @@ router.get("/postings", async (req, res, next) => {
   try {
     let total = await myDb.getPostingsCount(query);
     let postings = await myDb.getPostings(query, page, pageSize);
+    let postingLeaderboard = await myDb.getPostingLeaderboard();
     res.render("./pages/index", {
       postings,
       query,
       msg,
       currentPage: page,
       lastPage: Math.ceil(total/pageSize),
+      postingLeaderboard
     });
   } catch (err) {
     next(err);
@@ -31,7 +33,7 @@ router.get("/postings", async (req, res, next) => {
 });
 
 
-// to implement authors page
+// to implement applications page
 router.get("/applications", async (req, res, next) => {
   const query = req.query.q || "";
   const page = +req.query.page || 1;

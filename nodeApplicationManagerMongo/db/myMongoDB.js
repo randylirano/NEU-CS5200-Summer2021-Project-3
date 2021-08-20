@@ -131,7 +131,7 @@ async function getPostingLeaderboard() {
     const cursor = await applicationCollection.find({});
 
     for await (let application of cursor) {
-      clientRedis.p_zincrby("postingLeaderboard", 1, posting_id);
+      clientRedis.p_zincrby("postingLeaderboard", 1, application.posting_id);
     }
 
     return clientRedis.p_zrevrange("postingLeaderboard", 0, 5);
